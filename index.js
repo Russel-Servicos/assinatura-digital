@@ -18,7 +18,7 @@ const assinaturaDigitalPath = path.join(
   "assinatura-digital.html"
 );
 
-let tmpPath = path.join(__dirname, "tmp");
+let tmpPath = "";
 if (isProduction) {
   tmpPath = path.join("/tmp");
 } else {
@@ -67,12 +67,37 @@ app.post("/download", async (req, res) => {
   });
   console.log(`Imagem gerada.`);
 
-  res.download(path.join(tmpPath, imageName), imageName, function (error) {
-    if (!error && !isProduction) {
-      fs.rmSync(imagePath);
-      console.log("Imagem removida (após o download): " + imagePath);
+  res.status(200).sendFile(
+    imageName,
+    {
+      root: tmpPath,
+      dotfiles: "deny",
+      headers: {
+        "Content-type": "image/png",
+        "Content-Disposition": `attachment; filename="${image}"`,
+        "Content-Transfer-Encoding": "binary",
+        "Accept-Ranges": "bytes",
+
+        "Cache-Control": "no-store, no-cache",
+        "Cache-control": "private",
+        Pragma: "private",
+      },
+    },
+    function (err) {
+      if (err) {
+        next(err);
+      } else {
+        console.log("Sent:", fileName);
+      }
     }
-  });
+  );
+
+  // res.download(path.join(tmpPath, imageName), imageName, function (error) {
+  //   if (!error && !isProduction) {
+  //     fs.rmSync(imagePath);
+  //     console.log("Imagem removida (após o download): " + imagePath);
+  //   }
+  // });
 });
 
 app.listen(port, () => {
