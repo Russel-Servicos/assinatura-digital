@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Assinatura Digital</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #ecf0f1;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+      }
+
+      .form input {
+        width: 500px;
+      }
+
+      .form > div {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+
+      .form > div > label {
+        padding-bottom: 6px;
+      }
+
+      .container-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-width: 600px;
+        max-height: 180px;
+      }
+
+      .email-icon,
+      .phone-icon {
+        width: 14px;
+        height: 14px;
+        color: #000;
+        margin-right: 5px;
+      }
+
+      .email,
+      .phone {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .phone {
+        margin-bottom: 5px;
+      }
+
+      .main-info {
+        color: #fff;
+        background-color: #cd1f26;
+        padding: 20px 0 10px 20px;
+        width: 600px;
+        height: 100px;
+      }
+
+      .other-info {
+        color: #cd1f26;
+        background-color: #fff;
+        padding: 20px 0 10px 20px;
+        width: 600px;
+        height: 70px;
+      }
+
+      .logo {
+        position: absolute;
+        top: 23px;
+        right: 10px;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/download" method="post" class="form" target="_blank">
+        <div>
+          <label for="name">Nome: </label>
+          <input id="name" type="text" name="name" />
+        </div>
+
+        <div>
+          <label for="career">Função: </label>
+          <input id="career" type="text" name="career" />
+        </div>
+
+        <div>
+          <label for="phone">Telefone: </label>
+          <input id="phone" type="text" name="phone" />
+        </div>
+
+        <div>
+          <label for="email">Email: </label>
+          <input id="email" type="text" name="email" />
+        </div>
+
+        <input id="submit" type="submit" value="Gerar Assinatura Digital" />
+      </form>
+
+      <div class="container-card">
+        <div class="card">
+          <div class="main-info">
+            <h1 class="name">Felippe Deiró</h1>
+            <h2 class="career">Desenvolvedor Back-End</h2>
+          </div>
+          <div class="other-info">
+            <div class="phone">
+              <img class="phone-icon" src="./phone-solid.svg" />
+              <span>21 2223-0397</span>
+            </div>
+            <div class="email">
+              <img class="email-icon" src="./envelope-solid.svg" />
+              <span>dev1.back@empresa.russelservico.com.br</span>
+            </div>
+          </div>
+          <div class="logo">
+            <svg
+              width="200"
+              height="80"
+              viewBox="0 0 312 124"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_1110_1925)">
+                <path
+                  d="M0 0V115H96V0H0ZM67.0149 41.4498C92.2886 56.4313 75.6418 82.1096 58.3383 75.7179C60.9299 75.5416 63.413 74.5917 65.4773 72.9868C67.5416 71.382 69.0955 69.1934 69.9448 66.6946C70.7941 64.1958 70.9012 61.4976 70.2527 58.9372C69.6042 56.3768 68.2288 54.0677 66.2985 52.2985C60.3284 46.707 33.7015 33.5691 11.2736 57.5152C26.5871 30.3986 55.2736 34.4706 67.0149 41.4498V41.4498ZM23.5124 103.463C10.0398 90.1321 14.7861 69.6301 29.9502 61.7696C35.4925 58.9029 51.8408 55.5906 56.3184 68.2423C52.5871 66.3177 41.5622 63.9069 31.2637 71.7471C23.204 77.9362 17.8308 91.1349 23.5124 103.463ZM44.2487 92.8772C43.0945 90.9324 39.5821 79.3037 50.9453 73.7325C49.6182 76.7076 49.3166 80.0518 50.0896 83.2231C50.8625 86.3945 52.6646 89.2073 55.204 91.2059C63.0746 97.3646 74.1094 99.9881 84.7363 93.2318C71.9204 109.652 50.995 104.091 44.2885 92.8772H44.2487Z"
+                  fill="black"
+                ></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_1110_1925">
+                  <rect width="312" height="124" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const name = document.getElementById("name");
+      const career = document.getElementById("career");
+      const phone = document.getElementById("phone");
+      const email = document.getElementById("email");
+
+      window.addEventListener("load", () => {
+        name.value = "Felippe Deiró";
+        career.value = "Desenvolvedor Back-End";
+        phone.value = "21 2223-0397";
+        email.value = "dev1.back@empresa.russelservico.com.br";
+      });
+
+      name.addEventListener("keyup", (event) => {
+        document.querySelector(".card .name").innerHTML = event.target.value;
+      });
+
+      career.addEventListener("keyup", (event) => {
+        document.querySelector(".card .career").innerHTML = event.target.value;
+      });
+
+      phone.addEventListener("keyup", (event) => {
+        document.querySelector(".card .phone span").innerHTML =
+          event.target.value;
+      });
+
+      email.addEventListener("keyup", (event) => {
+        document.querySelector(".card .email span").innerHTML =
+          event.target.value;
+      });
+    </script>
+  </body>
+</html>
