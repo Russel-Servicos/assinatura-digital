@@ -1,5 +1,7 @@
 const express = require("express");
-const htmlToImage = require("node-html-to-image");
+const htmlToImage = require("html-to-image");
+const nodeHtmlToImage = require("node-html-to-image");
+const Handlebars = require("handlebars");
 const crypto = require("node:crypto");
 const path = require("node:path");
 const fs = require("node:fs");
@@ -59,45 +61,25 @@ app.post("/download", async (req, res) => {
   const imagePath = path.join(tmpPath, imageName);
   console.log(`Path da imagem: ${imagePath}`);
 
+  const template = Handlebars.compile(htmlContent);
+  const html = template(data);
+
   console.log(`Gerando a imagem...`);
-  const image = await htmlToImage({
-    html: htmlContent,
-    output: path.join(tmpPath, imageName),
-    content: data,
-  });
+  // const image = await htmlToImage.toPng("<h1>testeee</h1>");
+  const image = await nodeHtmlToImage({ html });
   console.log(`Imagem gerada.`);
 
-  res.status(200).sendFile(
-    imageName,
-    {
-      root: tmpPath,
-      dotfiles: "deny",
-      headers: {
-        "Content-type": "image/png",
-        "Content-Disposition": `attachment; filename="${image}"`,
-        "Content-Transfer-Encoding": "binary",
-        "Accept-Ranges": "bytes",
+  res.writeHead(200, {
+    "Content-type": "image/png",
+    "Content-Disposition": `attachment; filename="${imageName}"`,
+    "Content-Transfer-Encoding": "binary",
+    "Accept-Ranges": "bytes",
 
-        "Cache-Control": "no-store, no-cache",
-        "Cache-control": "private",
-        Pragma: "private",
-      },
-    },
-    function (err) {
-      if (err) {
-        next(err);
-      } else {
-        console.log("Sent:", fileName);
-      }
-    }
-  );
-
-  // res.download(path.join(tmpPath, imageName), imageName, function (error) {
-  //   if (!error && !isProduction) {
-  //     fs.rmSync(imagePath);
-  //     console.log("Imagem removida (após o download): " + imagePath);
-  //   }
-  // });
+    "Cache-Control": "no-store, no-cache",
+    "Cache-control": "private",
+    Pragma: "private",
+  });
+  res.end(image);
 });
 
 app.listen(port, () => {
