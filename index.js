@@ -1,5 +1,4 @@
 const express = require("express");
-const htmlToImage = require("html-to-image");
 const nodeHtmlToImage = require("node-html-to-image");
 const Handlebars = require("handlebars");
 const crypto = require("node:crypto");
@@ -65,7 +64,6 @@ app.post("/download", async (req, res) => {
   const html = template(data);
 
   console.log(`Gerando a imagem...`);
-  // const image = await htmlToImage.toPng("<h1>testeee</h1>");
   const image = await nodeHtmlToImage({ html });
   console.log(`Imagem gerada.`);
 
