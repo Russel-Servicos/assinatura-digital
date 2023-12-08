@@ -16,6 +16,8 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "express": "^4.18.2",
+    "handlebars": "^4.7.8",
+    "html-to-image": "^1.11.11",
     "node-html-to-image": "^4.0.0"
   }
 }
