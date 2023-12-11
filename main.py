@@ -45,5 +45,5 @@ def download():
 
     return send_file(f"./{imagePath}", mimetype='image/png', as_attachment=True, max_age=0)
 
-# if __name__ == '__main__':
-# 	app.run(host='0.0.0.0', port=24066, debug=True)
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=24066, debug=True)
