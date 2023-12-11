@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  assinatura:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        UID: ${HOST_UID}
+        GID: ${HOST_GID}
+    container_name: assinatura
+    ports:
+      - 24066:24066
+    volumes:
+      - ./:/app
