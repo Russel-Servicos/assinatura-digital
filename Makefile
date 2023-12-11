@@ -1,7 +1,7 @@
 deploy: compact upload-hosting
 
 compact:
-	@tar -czvf assinatura.tar.gz package* public index.js pm2.json Makefile
+	@tar -czvf assinatura.tar.gz requirements.txt main.py templates Makefile README.md pm2.json
 
 upload-hosting:
 	@rsync -vah --progress ./assinatura.tar.gz root@vps50657.publiccloud.com.br:/apps/
@@ -19,7 +19,16 @@ vg-halt:
 	@vagrant halt
 
 svr:
-	@flask --app main run -h "0.0.0.0" -p 24066 --debugger --reload
+	@python main.py
+
+venv-config:
+	@python -m venv env_assinatura
+
+venv-act:
+	@source env_assinatura/bin/activate
+
+# svr:
+# 	@flask --app main run -h "0.0.0.0" -p 24066 --debugger --reload
 
 dck-start:
 	@docker compose build --no-cache
