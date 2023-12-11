@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Assinatura Digital</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #ecf0f1;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+      }
+
+      .form input {
+        width: 500px;
+      }
+
+      .form > div {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+
+      .form > div > label {
+        padding-bottom: 6px;
+      }
+
+      .container-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: fit-content;
+        min-width: 352px;
+        max-height: 125px;
+      }
+
+      .header {
+        color: #fff;
+        background-color: #cd1f26;
+        background: linear-gradient(
+            187deg,
+            rgba(0, 0, 0, 0) 9.4%,
+            rgba(0, 0, 0, 0.2) 96.6%
+          ),
+          #cd1f26;
+        padding: 14px 80px 7px 15px;
+        width: 100%;
+        min-width: inherit;
+        height: 60px;
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        align-self: stretch;
+        color: #cd1f26;
+        background-color: #fff;
+        padding: 12px 65px 13px 15px;
+        width: 100%;
+        min-width: inherit;
+        height: 65px;
+      }
+
+      .logo {
+        width: 56px;
+        height: 66px;
+        position: absolute;
+        top: 16px;
+        right: 8px;
+      }
+
+      .envelope-icon,
+      .phone-icon {
+        width: 12px;
+        height: 12px;
+      }
+
+      .email-div,
+      .phone-div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        align-self: stretch;
+      }
+
+      .name {
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: normal;
+      }
+
+      .career {
+        color: #fff;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: normal;
+      }
+
+      .phone {
+        color: #ad1b21;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: normal;
+      }
+
+      .email {
+        color: #ad1b21;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/download" method="post" class="form" target="_blank">
+        <input id="width" type="hidden" name="width" />
+
+        <div>
+          <label for="name">Nome: </label>
+          <input id="name" type="text" name="name" />
+        </div>
+
+        <div>
+          <label for="career">Função: </label>
+          <input id="career" type="text" name="career" />
+        </div>
+
+        <div>
+          <label for="phone">Telefone: </label>
+          <input id="phone" type="text" name="phone" />
+        </div>
+
+        <div>
+          <label for="email">Email: </label>
+          <input id="email" type="text" name="email" />
+        </div>
+
+        <input id="submit" type="submit" value="Gerar Assinatura Digital" />
+      </form>
+
+      <div class="container-card">
+        <div class="card">
+          <div class="header">
+            <h1 class="name">{{name}}</h1>
+            <h2 class="career">{{career}}</h2>
+          </div>
+          <div class="footer">
+            <div class="phone-div">
+              <svg
+                class="phone-icon"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_1342_122)">
+                  <path
+                    d="M11.9813 9.07017L11.4363 11.4327C11.3598 11.7666 11.0662 12.0003 10.7224 12.0003C4.80937 11.9998 0 7.19048 0 1.27721C0 0.933612 0.233648 0.639706 0.567656 0.563534L2.93016 0.0186133C3.27422 -0.061121 3.62578 0.117473 3.76875 0.4433L4.85906 2.98627C4.98652 3.2858 4.90055 3.63478 4.64859 3.84056L3.38672 4.85376C4.18313 6.47611 5.50219 7.79517 7.125 8.59204L8.15812 7.3311C8.36175 7.07845 8.71336 6.99103 9.01289 7.12075L11.5559 8.21083C11.8617 8.37173 12.0609 8.72798 11.9813 9.07017Z"
+                    fill="#B81C23"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1342_122">
+                    <rect width="12" height="12" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <span class="phone">{{phone}}</span>
+            </div>
+            <div class="email-div">
+              <svg
+                class="envelope-icon"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 8.25C5.61258 8.25 5.22516 8.12292 4.89469 7.86539L0 4.05937V9.375C0 9.99609 0.503672 10.5 1.125 10.5H10.875C11.4963 10.5 12 9.99633 12 9.375V4.05937L7.10625 7.86797C6.77578 8.12344 6.38672 8.25 6 8.25ZM0.381797 3.40547L5.35523 7.275C5.73469 7.57031 6.26625 7.57031 6.6457 7.275L11.6191 3.40547C11.8383 3.21797 12 2.92969 12 2.625C12 2.00367 11.4961 1.5 10.875 1.5H1.125C0.503672 1.5 0 2.00367 0 2.625C0 2.92969 0.140859 3.21797 0.381797 3.40547Z"
+                  fill="#C11E24"
+                />
+              </svg>
+              <span class="email">{{email}}</span>
+            </div>
+          </div>
+          <svg
+            class="logo"
+            viewBox="0 0 68 86"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_d_1342_117)">
+              <rect
+                width="56"
+                height="66"
+                transform="translate(4 13)"
+                fill="white"
+              />
+              <path
+                d="M4 13V79H60V13H4ZM43.092 36.7886C57.835 45.3867 48.1244 60.1238 38.0307 56.4555C39.5424 56.3543 40.9909 55.8091 42.1951 54.8881C43.3992 53.9671 44.3057 52.711 44.8011 51.2769C45.2966 49.8428 45.3591 48.2943 44.9808 46.8248C44.6025 45.3554 43.8002 44.0301 42.6741 43.0148C39.1915 39.8058 23.6592 32.2657 10.5763 46.0087C19.5091 30.4461 36.243 32.7831 43.092 36.7886ZM17.7156 72.3785C9.85655 64.728 12.6252 52.9616 21.471 48.4504C24.704 46.8052 34.2405 44.9042 36.8524 52.1651C34.6758 51.0606 28.2446 49.677 22.2371 54.1766C17.5357 57.7286 14.4013 65.3035 17.7156 72.3785ZM29.8118 66.3034C29.1385 65.1873 27.0896 58.5134 33.7181 55.316C32.9439 57.0235 32.768 58.9428 33.2189 60.7628C33.6698 62.5829 34.721 64.1972 36.2023 65.3442C40.7935 68.8788 47.2305 70.3845 53.4295 66.5069C45.9536 75.9305 33.7471 72.7389 29.835 66.3034H29.8118Z"
+                fill="#CD1F26"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_d_1342_117"
+                x="0"
+                y="0"
+                width="76"
+                height="86"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dx="6" dy="-3" />
+                <feGaussianBlur stdDeviation="5" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_1342_117"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_1342_117"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const name = document.getElementById("name");
+      const career = document.getElementById("career");
+      const phone = document.getElementById("phone");
+      const email = document.getElementById("email");
+      const width = document.getElementById("width");
+
+      window.addEventListener("load", () => {
+        name.value = "Felippe Deiró";
+        career.value = "Desenvolvedor Back-End";
+        phone.value = "21 2223-0397";
+        email.value = "dev1.back@empresa.russelservico.com.br";
+
+        document.querySelector(".card .name").innerHTML = name.value;
+        document.querySelector(".card .career").innerHTML = career.value;
+        document.querySelector(".card .phone").innerHTML = phone.value;
+        document.querySelector(".card .email").innerHTML = email.value;
+        width.value = document.querySelector(".header").offsetWidth;
+      });
+
+      name.addEventListener("keyup", (event) => {
+        document.querySelector(".card .name").innerHTML = event.target.value;
+        width.value = document.querySelector(".header").offsetWidth;
+      });
+
+      career.addEventListener("keyup", (event) => {
+        document.querySelector(".card .career").innerHTML = event.target.value;
+        width.value = document.querySelector(".header").offsetWidth;
+      });
+
+      phone.addEventListener("keyup", (event) => {
+        document.querySelector(".card .phone").innerHTML = event.target.value;
+        width.value = document.querySelector(".header").offsetWidth;
+      });
+
+      email.addEventListener("keyup", (event) => {
+        document.querySelector(".card .email").innerHTML = event.target.value;
+        width.value = document.querySelector(".header").offsetWidth;
+      });
+    </script>
+  </body>
+</html>
