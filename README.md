@@ -13,3 +13,14 @@ make pm2-del
 make pm2-logs
 
 make pm2-start
+
+## Execução na VPS
+
+systemd
+nginx
+iptables
+
+- docker container rm -f $(docker container ls -a -q)
+- docker container rm -f assinatura
+- docker container run -d -v $(pwd):/app -w /app --name assinatura -p 24066:24066 python:3.11.1-bullseye bash -c "./config.sh && python main.py"
+- docker container ls -a
