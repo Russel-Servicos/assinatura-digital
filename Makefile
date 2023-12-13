@@ -1,7 +1,7 @@
 deploy: compact upload-hosting
 
 compact:
-	@tar -czvf assinatura.tar.gz requirements.txt main.py templates Makefile README.md pm2.json
+	@tar -czvf assinatura.tar.gz requirements.txt main.py templates Makefile README.md pm2.json config.sh
 
 upload-hosting:
 	@rsync -vah --progress ./assinatura.tar.gz root@vps50657.publiccloud.com.br:/apps/
@@ -34,22 +34,11 @@ dck-start:
 	@docker compose build --no-cache
 	@docker compose up -d
 
-dck-open:
-	@docker compose exec -it assinatura bash
+dck-run:
+	@docker container run -it -d -v $(pwd):/app -w /app --name assinatura -p 24066:24066 python:3.11.1-bullseye bash
 
-dck-reset-and-up:
-	@echo "===== REMOVE TODOS OS CONTAINERS"
-	@docker container rm -f $$(docker container ls -a -q) 
-	@echo "===== BUILDA"
-	@HOST_UID=$$(id -u) HOST_GID=$$(id -g) docker compose build --no-cache
-	@echo "===== EXECUTA CONTAINERS"
-	@docker compose up -d
-
-dck-build-up:
-	@echo "===== BUILDA"
-	@HOST_UID=$$(id -u) HOST_GID=$$(id -g) docker compose build --no-cache
-	@echo "===== EXECUTA CONTAINERS"
-	@docker compose up -d
+dck-config:
+	@docker container exec -it assinatura "bash /config.sh"
 
 pm2-start:
 	@pm2 start pm2.json

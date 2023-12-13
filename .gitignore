@@ -1,3 +1,7 @@
 *.tar.gz
 images/*
 __pycache__
+*.deb.*
+*.deb
+env_assinatura
+assinatura
