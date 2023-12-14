@@ -29,3 +29,24 @@ iptables
 ### Entrarno docker depois de criado
 
 - docker container exec -d assinatura bash -c "python main.py"
+- docker container run -d -v $(pwd):/app -w /app --name assinatura -p 24066:24066 python:3.11.1-bullseye bash -c "./config.sh && python main.py"
+- docker container ls -a
+
+joga o script em /usr/local/bin
+assinatura-digital.sh (limpa o docker, sobe o docker, baixa e instala as dependencias dentro do container, roda a aplicacao, verificacao de healthcheck, se der falha por mt tempo manda msg no slack)
+
+###
+
+pasta do app assinatura digital é "/apps/assinatura_digital"
+
+mkdir -p /apps/assinatura_digital
+chmod +x /apps/assinatura_digital/assinatura-digital.sh
+chmod +x /apps/assinatura_digital/assinatura-digital-stop.sh
+cp -v /apps/assinatura_digital/assinatura-digital.sh /usr/local/bin
+cp -v /apps/assinatura_digital/assinatura-digital-stop.sh /usr/local/bin
+cp -v /apps/assinatura_digital/assinatura-digital.service /etc/systemd/system/
+systemctl daemon-reload
+systemctl status assinatura-digital
+systemctl enable assinatura-digital
+systemctl start assinatura-digital
+systemctl restart assinatura-digital
