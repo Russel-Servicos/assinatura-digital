@@ -5,3 +5,4 @@ __pycache__
 *.deb
 env_assinatura
 assinatura
+.vagrant
