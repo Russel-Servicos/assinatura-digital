@@ -4,14 +4,22 @@ Sobre: esse projeto funciona em abiente muito específico e controlado. É atrav
 
 ## Como executar?
 
+> Quando executar o comando `vagrant`, deve estar no na pasta onde o Vagrantfile está
+
 - Instala o Vagrant e VirtualBox
-- `git clone`
-- `cd assinatura-digital`
-- `vagrant up`
-- `vagrant ssh`
-    - `cd /app`
-    - `make dck-run`
+- Baixe o Vagrantfile
+- Abra o terminal e o arquivo deve está na mesma pasta onde está o Vagrantfile
+- Execute `vagrant up`
 - acesse `localhost:24066` no navegador
+
+## Como reiniciar o site?
+
+> Quando executar o comando `vagrant`, deve estar no na pasta onde o Vagrantfile está
+
+Ou execute `vagrant destroy` e depois `vagrant up`, só que irá demorar mais para estar pronto. Ou acesse o site e reinicie seguindo os passos:
+
+- `vagrant ssh`
+- `docker container start assinatura`
 
 ## Como debugar?
 
