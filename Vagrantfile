@@ -1,15 +1,13 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
-  config.vm.network "public_network"
-  config.vm.synced_folder "./", "/apps/assinatura_digital"
+  config.vm.synced_folder "./", "/apps"
 
-  # config.ssh.username = "root"
-  # config.ssh.password = "root"
+  config.vm.network "forwarded_port", guest: 24066, host: 24066
 
   config.vm.provision "docker" do |d|
   end
   
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
+    vb.memory = "1024"
   end
 end
