@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   
-  config.vm.synced_folder "./", "/apps"
+  config.vm.synced_folder "./", "/vagrant"
 
   config.vm.network "forwarded_port", guest: 24066, host: 24066
   
@@ -13,7 +13,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", privileged: true, inline: <<-SCRIPT
-    apt update -y
-    apt install -y make git curl
+    apt-get update -y
+    apt-get install -y make git curl
+    cd /vagrant
+    git clone https://github.com/Russel-Servicos/assinatura-digital.git ./assinatura
+    cd ./assinatura
+    make init-container
+    make logs-container
   SCRIPT
 end
