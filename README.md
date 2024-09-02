@@ -1,5 +1,7 @@
 # Assinatura Digital
 
+> **OS VÍDEOS EXPLICATIVOS ESTÃO NA PASTA `docs`. Configurando e instalando (parte 1); configurando novamente o site que saiu do ar (parte 2)** 
+
 Sobre: esse projeto funciona em abiente muito específico e controlado. É através do docker, python e as libs que consegui construir essa API.
 
 ## Como executar?
