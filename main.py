@@ -33,29 +33,25 @@ def download():
     htmlPath = os.path.join("images", htmlName)
     imagePath = os.path.join("images", imageName)
     
-    # Criar diretório images
+    
     if os.path.exists("images"):
         shutil.rmtree("images")
     os.makedirs("images")
 
-    # Salvar o HTML
     with open(htmlPath, 'w', encoding='utf-8') as file:
         file.write(html)
     
-    # Converter HTML para imagem
-    width = int(width) + 3
     
-    # Usar caminhos absolutos
+    width = int(width) + 3
+   
     abs_html_path = os.path.abspath(htmlPath)
     abs_image_path = os.path.abspath(imagePath)
-    
-    # Detectar sistema operacional
+
     is_windows = platform.system() == 'Windows'
     
     if is_windows:
-        # No Windows, procurar wkhtmltoimage
         wkhtmltoimage_paths = [
-            shutil.which('wkhtmltoimage'),  # Procura no PATH primeiro
+            shutil.which('wkhtmltoimage'),
             r'C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage.exe',
             r'C:\Program Files (x86)\wkhtmltopdf\bin\wkhtmltoimage.exe',
         ]
@@ -104,7 +100,7 @@ Verifique se está instalado e no PATH.
         except FileNotFoundError as e:
             return f"Erro ao executar wkhtmltoimage: {e}", 500
     else:
-        # No Linux
+       
         command = f'wkhtmltoimage --width {width} "{abs_html_path}" "{abs_image_path}"'
         print(f"Executando comando (Linux): {command}")
         
@@ -125,7 +121,7 @@ Verifique se está instalado e no PATH.
         print(error_msg)
         return error_msg, 500
     
-    # Verificar se o arquivo foi criado
+    
     if not os.path.exists(abs_image_path):
         print(f"ERRO: Arquivo não foi criado: {abs_image_path}")
         return "Erro: imagem não foi gerada", 500
